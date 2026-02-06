@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rebecca's Portfolio</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+
+  <style>
+    :root {
+      --bg-color: #000000;
+      --grid-color: #ff2bbf; /* neon pink */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-color);
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: #ffffff;
+    }
+
+    /* === MAIN SCENE CONTAINER === */
+    .scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+    }
+
+    /* === NAV BAR === */
+.navbar {
+  position: absolute;
+  top: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3rem;
+
+  z-index: 4; /* above stars, grid, and hero text */
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+}
+
+.navbar a {
+  position: relative;
+  text-decoration: none;
+  color: #f5f5f5;
+  padding-bottom: 0.4rem;
+
+  transition:
+    color 0.25s ease,
+    text-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* neon underline “beam” */
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.25rem;
+
+  width: 130%;
+  height: 2px;
+  background: var(--grid-color);
+
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+
+  box-shadow:
+    0 0 6px var(--grid-color),
+    0 0 14px var(--grid-color),
+    0 0 22px var(--grid-color);
+
+  transition: transform 0.25s ease;
+}
+
+/* hover effect: glow + float + show underline */
+.navbar a:hover {
+  color: var(--grid-color);
+  transform: translateY(-2px);
+  text-shadow:
+    0 0 8px rgba(255, 43, 191, 0.9),
+    0 0 18px rgba(255, 43, 191, 0.7);
+}
+
+.navbar a:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Keep HOME highlighted on the home page */
+.navbar a.home-link {
+  color: var(--grid-color);
+}
+
+.navbar a.home-link::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+
+
+    /* === STARFIELD (CSS-ONLY, ANIMATED) === */
+    .stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(2px 2px at 20px 20px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 130px 80px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 80px 150px, #ffffff, transparent),
+        radial-gradient(2px 2px at 200px 120px, #ffffff, transparent),
+        radial-gradient(2px 2px at 250px 40px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 300px 200px, #ffffff, transparent),
+        radial-gradient(1.5px 1.5px at 400px 100px, #ffffff, transparent),
+        radial-gradient(2px 2px at 450px 250px, #ffffff, transparent);
+      background-repeat: repeat;
+      background-size:
+        200px 200px,
+        260px 260px,
+        230px 230px,
+        300px 300px,
+        340px 340px,
+        280px 280px,
+        260px 260px,
+        320px 320px;
+
+      animation: moveStars 60s linear infinite;
+      z-index: 1;
+    }
+
+    /* Slight parallax second layer for depth */
+    .stars::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 30px 40px, #ffffff, transparent),
+        radial-gradient(1px 1px at 160px 90px, #ffffff, transparent),
+        radial-gradient(1px 1px at 90px 190px, #ffffff, transparent),
+        radial-gradient(1px 1px at 220px 170px, #ffffff, transparent),
+        radial-gradient(1px 1px at 360px 60px, #ffffff, transparent),
+        radial-gradient(1px 1px at 410px 230px, #ffffff, transparent);
+      background-repeat: repeat;
+      background-size:
+        260px 260px,
+        320px 320px,
+        280px 280px,
+        300px 300px,
+        340px 340px,
+        360px 360px;
+
+      opacity: 0.7;
+      animation: moveStarsParallax 90s linear infinite;
+    }
+
+    @keyframes moveStars {
+      from {
+        background-position:
+          0 0,
+          0 0,
+          0 0,
+          0 0,
+          0 0,
+          0 0,
+          0 0,
+          0 0;
+      }
+      to {
+        background-position:
+          -1000px 800px,
+          -800px 1000px,
+          -1200px 600px,
+          -600px 1200px,
+          -900px 700px,
+          -700px 900px,
+          -1100px 500px,
+          -500px 1100px;
+      }
+    }
+
+    @keyframes moveStarsParallax {
+      from {
+        background-position:
+          0 0,
+          0 0,
+          0 0,
+          0 0,
+          0 0,
+          0 0;
+      }
+      to {
+        background-position:
+          600px -400px,
+          800px -600px,
+          500px -700px,
+          900px -500px,
+          700px -900px,
+          1000px -800px;
+      }
+    }
+
+    /* === RETRO PERSPECTIVE GRID (BOTTOM-ONLY) === */
+    .grid {
+    position: absolute;
+    left: 50%;
+    top: 55%;          /* horizon starts a bit below the middle of the page */
+    
+    width: 200vw;
+    height: 120vh;     /* extends downward off-screen */
+
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;  /* small squares = zoomed out */
+    background-repeat: repeat;
+
+    transform-origin: top center;
+    transform: translateX(-50%) perspective(1200px) rotateX(82deg);
+
+    opacity: 0.8;
+    z-index: 2;
+    box-shadow: 0 0 35px rgba(255, 43, 191, 0.5);
+    }
+
+
+    .grid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.7) 55%,
+        #000 85%
+    );
+    pointer-events: none;
+    }
+
+
+    /* Fade the grid into the stars at the "horizon" */
+    .grid::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.85) 55%,
+        #000000 80%
+      );
+      pointer-events: none;
+    }
+
+    /* === HERO TEXT LEFT-CENTERED === */
+  .hero-text {
+    position: absolute;
+    top: 50%;                 /* vertically centered */
+    left: 12%;                /* pushes it toward the left side */
+    transform: translateY(-50%); /* centers vertically without moving horizontally */
+    text-align: left;         /* left-align text now that it's on the left side */
+    z-index: 3;
+    letter-spacing: 0.15em;
+    text-transform: none;
+  }
+
+
+  .hero-text h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+
+    .hero-text p {
+      font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+      opacity: 0.8;
+    }
+
+    /* === FLOATING NEON HEADSHOT === */
+.hero-photo-wrapper {
+  position: absolute;
+  top: 50%;          /* vertical center of the viewport */
+  right: 12%;        /* push toward the right side */
+  transform: translateY(-50%);
+  z-index: 3;        /* above stars & grid */
+}
+
+/* actual circular photo with glow + float animation */
+.hero-photo {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  border: 2px solid var(--grid-color);
+  box-shadow:
+    0 0 12px rgba(255, 43, 191, 0.8),
+    0 0 26px rgba(255, 43, 191, 0.6),
+    0 0 40px rgba(255, 43, 191, 0.4);
+
+  background: radial-gradient(
+    circle at 30% 20%,
+    rgba(255, 255, 255, 0.18),
+    rgba(0, 0, 0, 0.95)
+  );
+
+  animation: float 6s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* the image itself */
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* crops nicely into the circle */
+  display: block;
+}
+
+/* hover: slightly bigger + stronger glow */
+.hero-photo:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow:
+    0 0 18px rgba(255, 43, 191, 0.95),
+    0 0 36px rgba(255, 43, 191, 0.8),
+    0 0 60px rgba(255, 43, 191, 0.7);
+}
+
+/* gentle floating motion */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* === ROTATING PHRASES UNDER NAME === */
+.rotating-phrase {
+  margin-top: 1rem;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  color: #ffffff;
+  opacity: 0.9;
+  letter-spacing: 0.12em;
+  height: 1.5em; /* prevents layout jump during animations */
+  overflow: hidden;
+  position: relative;
+}
+
+#rotate-text {
+  display: inline-block;
+  white-space: nowrap;
+  border-right: 2px solid var(--grid-color);
+  padding-right: 8px;
+  animation: cursor-blink 0.8s infinite;
+}
+
+/* Retro cursor blink */
+@keyframes cursor-blink {
+  0%, 100% { border-color: var(--grid-color); }
+  50% { border-color: transparent; }
+}
+
+/* Glitch dissolve effect */
+@keyframes glitch-out {
+  0% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    opacity: 0.6;
+    clip-path: inset(10% 0 0 0);
+    filter: hue-rotate(45deg);
+  }
+  40% {
+    opacity: 0.4;
+    clip-path: inset(40% 0 0 0);
+    filter: hue-rotate(75deg);
+  }
+  60% {
+    opacity: 0.2;
+    clip-path: inset(60% 0 0 0);
+    filter: hue-rotate(140deg);
+  }
+  80% {
+    opacity: 0.1;
+    clip-path: inset(90% 0 0 0);
+    filter: hue-rotate(220deg);
+  }
+  100% {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+    filter: hue-rotate(300deg);
+  }
+}
+
+/* Stardust fade-out applied by JS */
+#rotate-text.stardust {
+  animation: stardust-out 0.9s ease-out forwards;
+}
+
+@keyframes stardust-out {
+  0% {
+    opacity: 1;
+    text-shadow:
+      0 0 4px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(255, 43, 191, 0.7);
+    letter-spacing: 0.12em;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.9),
+      0 0 16px rgba(255, 43, 191, 0.9),
+      0 0 24px rgba(0, 198, 255, 0.7);
+    letter-spacing: 0.16em;
+    filter: blur(1px);
+  }
+  70% {
+    opacity: 0.4;
+    text-shadow:
+      0 0 12px rgba(255, 255, 255, 0.6),
+      0 0 26px rgba(255, 43, 191, 0.6),
+      0 0 36px rgba(0, 198, 255, 0.6);
+    letter-spacing: 0.22em;
+    filter: blur(2px);
+    transform: translateY(-4px);
+  }
+  100% {
+    opacity: 0;
+    text-shadow: none;
+    letter-spacing: 0.26em;
+    filter: blur(3px);
+    transform: translateY(-8px);
+  }
+}
+
+
+
+/* Sparkle "burst" behind the text */
+.sparkle {
+  position: absolute;
+  inset: -0.2em -0.6em; /* slightly larger than the text area */
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.35), transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(255, 43, 191, 0.45), transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(0, 198, 255, 0.35), transparent 55%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;    /* sits behind the phrase */
+  filter: blur(1px);
+}
+
+.sparkle.active {
+  animation: sparkle-burst 0.8s ease-out forwards;
+}
+
+/* starburst expansion animation */
+@keyframes sparkle-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  60% {
+    opacity: 0.7;
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+/* === SOCIAL ICONS UNDER HEADSHOT === */
+.social-icons {
+  margin-top: 1.3rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.4rem;
+}
+
+.social-icon {
+  font-size: 1.9rem;
+  color: #ffffff;
+  text-decoration: none;
+
+  transition: 
+    transform 0.25s ease, 
+    text-shadow 0.25s ease,
+    color 0.25s ease;
+}
+
+/* Neon hover effect */
+.social-icon:hover {
+  color: var(--grid-color);
+  transform: translateY(-4px);
+
+  text-shadow:
+    0 0 10px rgba(255, 43, 191, 1),
+    0 0 20px rgba(255, 43, 191, 0.8),
+    0 0 30px rgba(0, 198, 255, 0.7);
+}
+
+/* === CURVY NEON TRAIL ALONG CURSOR PATH === */
+.shooting-star {
+  position: fixed;
+  height: 4px;                /* thickness of the streak */
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 7;
+
+  /* neon plasma gradient along the segment */
+  background: linear-gradient(
+    90deg,
+    rgba(255, 43, 191, 0) 0%,
+    rgba(255, 43, 191, 0.9) 35%,
+    rgba(0, 198, 255, 0.9) 80%,
+    rgba(0, 198, 255, 0) 100%
+  );
+
+  filter:
+    drop-shadow(0 0 6px rgba(255, 43, 191, 1))
+    drop-shadow(0 0 14px rgba(0, 198, 255, 0.9));
+
+  transform-origin: 0% 50%;   /* start of the segment */
+  opacity: 0.9;
+  animation: neon-streak 0.4s ease-out forwards;
+}
+
+/* tiny glowing particle at the tip of each segment */
+.shooting-star::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+
+  background: radial-gradient(circle, #ffffff, rgba(255, 255, 255, 0) 60%);
+  filter:
+    drop-shadow(0 0 8px rgba(255, 255, 255, 1))
+    drop-shadow(0 0 18px rgba(255, 43, 191, 0.9));
+  opacity: 0;
+  transform: translateY(-50%) scale(0.3);
+  animation: particle-pop 0.4s ease-out forwards;
+}
+
+/* fade-out of each streak segment */
+@keyframes neon-streak {
+  0% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* particle fades & shrinks like stardust */
+@keyframes particle-pop {
+  0% {
+    opacity: 1;
+    transform: translateY(-50%) scale(0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.2);
+    filter: blur(2px);
+  }
+}
+
+/* === TOP-LEFT LOGO (favicon image) === */
+.site-logo {
+  position: absolute;
+  top: 1.6rem;
+  left: 2.2rem;
+  z-index: 5;              /* above stars & grid, below cursor trail */
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.9;
+
+  transition:
+    transform 0.25s ease,
+    text-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.site-logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+
+  box-shadow:
+    0 0 8px rgba(255, 43, 191, 0.9),
+    0 0 16px rgba(0, 198, 255, 0.8);
+}
+
+/* subtle hover lift + glow */
+.site-logo:hover {
+  transform: translateY(-2px);
+  opacity: 1;
+  text-shadow:
+    0 0 6px rgba(255, 43, 191, 0.8),
+    0 0 12px rgba(0, 198, 255, 0.8);
+}
+
+
+
+  </style>
+</head>
+<body>
+  <div class="scene" id="home">
+
+    <!-- 🔹 Top-left logo using favicon image -->
+    <a href="index.html" class="site-logo">
+      <img src="images/favicon.jpg" alt="Rebecca Rajesh logo">
+      <!-- optional tiny text next to it; you can remove if you want just the icon -->
+      
+    </a>
+
+
+    <!-- 🔹 NAV BAR GOES HERE, RIGHT AFTER .scene OPENS -->
+    <nav class="navbar">
+      <a href="#home" class="home-link">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <!-- 🔹 END NAV BAR -->
+
+    <div class="stars"></div>
+    <div class="grid"></div>
+
+    <div class="hero-text">
+      <h1 style="text-transform: uppercase;">Rebecca Rajesh</h1>
+
+    <!-- Rotating animated descriptor with sparkle -->
+    <div class="rotating-phrase">
+      <span class="sparkle" id="sparkle"></span>
+      <span id="rotate-text"></span>
+    </div>
+
+
+    </div>
+
+    <div class="hero-photo-wrapper">
+      <div class="hero-photo">
+        <img src="images/profile(bb).jpg" alt="Rebecca Rajesh headshot" />
+      </div>
+    
+      <div class="social-icons">
+
+        <!-- Email Icon -->
+        <a href="mailto:beckyrajesh@gmail.com" class="social-icon email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/rebecca-rajesh/" target="_blank" class="social-icon linkedin">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      
+        <!-- GitHub -->
+        <a href="https://github.com/rebeccarajesh-25" target="_blank" class="social-icon github">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+  
+    </body>
+    </html>
+   
+    <script>
+      const phrases = [
+        "data enthusiast",
+        "insight analyst",
+        "tech futurist"
+      ];
+      
+      const rotateSpan = document.getElementById("rotate-text");
+      const sparkle = document.getElementById("sparkle");
+      
+      let phraseIndex = 0;
+      let charIndex = 0;
+      
+      const typingSpeed = 80;      // ms per character
+      const holdTime = 1600;       // how long phrase stays fully visible
+      const fadeDuration = 900;    // match stardust-out animation (0.9s)
+      
+      /* reuse sparkle burst behind the words */
+      function triggerSparkle() {
+        if (!sparkle) return;
+      
+        sparkle.classList.remove("active");
+        void sparkle.offsetWidth; // force reflow so animation restarts
+        sparkle.classList.add("active");
+      }
+      
+      /* type the current phrase in, one character at a time */
+      function typePhrase() {
+        const current = phrases[phraseIndex];
+      
+        if (charIndex < current.length) {
+          charIndex++;
+          rotateSpan.textContent = current.slice(0, charIndex);
+          setTimeout(typePhrase, typingSpeed);
+        } else {
+          // phrase fully typed - pause, then start stardust fade
+          setTimeout(() => startStardustFade(current), holdTime);
+        }
+      }
+      
+      /* run the stardust fade, then move to the next phrase */
+      function startStardustFade(current) {
+        // sparkle + stardust on the current phrase
+        triggerSparkle();
+        rotateSpan.classList.add("stardust");
+      
+        setTimeout(() => {
+          // reset for next phrase
+          rotateSpan.classList.remove("stardust");
+          rotateSpan.textContent = "";
+          charIndex = 0;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+      
+          // start typing the next phrase
+          typePhrase();
+        }, fadeDuration);
+      }
+      
+      // kick things off: optional initial sparkle + first phrase
+      triggerSparkle();
+      typePhrase();
+      </script>
+
+
+<script>
+  const trailContainer = document.querySelector(".scene") || document.body;
+
+  let lastX = null;
+  let lastY = null;
+  let lastTime = 0;
+  const minInterval = 16; // ~60 fps max; adjust for performance
+
+  window.addEventListener("mousemove", (event) => {
+    const now = Date.now();
+    const x = event.clientX;
+    const y = event.clientY;
+
+    // initialize starting point
+    if (lastX === null || lastY === null) {
+      lastX = x;
+      lastY = y;
+      lastTime = now;
+      return;
+    }
+
+    // throttle a bit so it's smooth but not too heavy
+    if (now - lastTime < minInterval) {
+      lastX = x;
+      lastY = y;
+      return;
+    }
+
+    const dx = x - lastX;
+    const dy = y - lastY;
+    const distance = Math.hypot(dx, dy);
+
+    // ignore tiny movements
+    if (distance < 4) {
+      lastX = x;
+      lastY = y;
+      lastTime = now;
+      return;
+    }
+
+    const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+    // create one segment from the previous point to the current point
+    const segment = document.createElement("div");
+    segment.classList.add("shooting-star");
+
+    segment.style.left = lastX + "px";
+    segment.style.top = lastY + "px";
+    segment.style.width = distance + "px";
+    segment.style.transform = `translate(0, -50%) rotate(${angle}deg)`;
+
+    trailContainer.appendChild(segment);
+
+    // clean up after animation
+    segment.addEventListener("animationend", () => {
+      segment.remove();
+    });
+
+    // update "previous" point
+    lastX = x;
+    lastY = y;
+    lastTime = now;
+  });
+</script>
+
+
+</body>
+
+</html>
