@@ -313,7 +313,7 @@
 
       background-image:
         radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent 55%),
-        radial-gradient(2px 2px at 70% 60%, rgba(255,43,191,0.9), transparent 60%),
+        radial-gradient(2px 2px at 70% 60%, rgba(255, 43, 191,0.9), transparent 60%),
         radial-gradient(2px 2px at 40% 80%, rgba(0,198,255,0.9), transparent 60%),
         linear-gradient(
           120deg,
@@ -416,10 +416,29 @@
       object-fit: contain;
       filter:
         grayscale(1)
-        brightness(1.25)
-        contrast(1.1)
-        drop-shadow(0 0 8px rgba(255, 43, 191, 0.75))
-        drop-shadow(0 0 12px rgba(0, 198, 255, 0.7));
+        brightness(0)
+        invert(36%)
+        sepia(84%)
+        saturate(3800%)
+        hue-rotate(300deg)
+        brightness(95%)
+        contrast(95%)
+        drop-shadow(0 0 4px var(--grid-color));
+    }
+
+    .skill-logo img.logo-preserve-white {
+      filter:
+        hue-rotate(300deg)
+        saturate(3.5)
+        brightness(1.05)
+        contrast(1.05)
+        drop-shadow(0 0 4px var(--grid-color));
+    }
+
+    .skill-logo img.logo-css {
+      filter:
+        drop-shadow(0 0 2px rgba(255, 255, 255, 0.8))
+        drop-shadow(0 0 4px var(--grid-color));
     }
 
     .skill-logo:hover {
@@ -619,7 +638,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="../images/logos/HTML.png" alt="HTML">
+              <img src="../images/logos/HTML.png" alt="HTML" class="logo-preserve-white">
             </a>
             <a
               href="https://developer.mozilla.org/en-US/docs/Web/CSS"
@@ -627,7 +646,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="../images/logos/CSS.png" alt="CSS">
+              <img src="../images/logos/CSS.png" alt="CSS" class="logo-css">
             </a>
             <a
               href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
@@ -666,7 +685,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="../images/logos/scikit-learn.png" alt="scikit-learn">
+              <img src="../images/logos/scikit-learn.png" alt="scikit-learn" class="logo-preserve-white">
             </a>
           </div>
         </div>
