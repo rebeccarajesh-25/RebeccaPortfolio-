@@ -386,30 +386,20 @@
     .logo-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
+      gap: 1rem;
+      align-items: center;
     }
 
-    /* circular neon buttons for each logo */
+    /* full-size neon logo links */
     .skill-logo {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
+      padding: 0.35rem 0.2rem;
+      border-radius: 0.7rem;
       text-decoration: none;
-
-      background: radial-gradient(
-          circle at 30% 0%,
-          rgba(255, 255, 255, 0.22),
-          rgba(0, 0, 0, 0.95)
-        );
-      border: 1px solid rgba(255, 255, 255, 0.28);
-
-      box-shadow:
-        0 0 8px rgba(255, 43, 191, 0.7),
-        0 0 16px rgba(0, 198, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.18);
 
       transition:
         transform 0.2s ease,
@@ -419,26 +409,24 @@
     }
 
     .skill-logo img {
-      width: 65%;
-      height: 65%;
+      width: auto;
+      height: 44px;
+      max-width: 100%;
       object-fit: contain;
       filter:
-        brightness(1.15)
-        drop-shadow(0 0 6px rgba(255, 43, 191, 0.7))
-        drop-shadow(0 0 10px rgba(0, 198, 255, 0.65));
+        grayscale(1)
+        brightness(1.25)
+        contrast(1.1)
+        drop-shadow(0 0 8px rgba(255, 43, 191, 0.75))
+        drop-shadow(0 0 12px rgba(0, 198, 255, 0.7));
     }
 
     .skill-logo:hover {
-      transform: translateY(-3px) scale(1.05);
-      border-color: rgba(0, 198, 255, 0.95);
+      transform: translateY(-2px) scale(1.03);
+      border-color: rgba(0, 198, 255, 0.8);
       box-shadow:
-        0 0 10px rgba(255, 43, 191, 1),
-        0 0 22px rgba(0, 198, 255, 0.9);
-      background: radial-gradient(
-          circle at 10% 0%,
-          rgba(255, 255, 255, 0.3),
-          rgba(0, 0, 0, 0.92)
-        );
+        0 0 12px rgba(255, 43, 191, 0.8),
+        0 0 20px rgba(0, 198, 255, 0.75);
     }
 
     /* === CURSOR TRAIL === */
