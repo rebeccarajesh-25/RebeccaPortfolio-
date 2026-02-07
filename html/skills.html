@@ -381,6 +381,63 @@
         0 0 18px rgba(0, 198, 255, 0.8);
     }
 
+    /* === LOGO GRID INSIDE CONSTELLATIONS === */
+
+    .logo-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    /* circular neon buttons for each logo */
+    .skill-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      text-decoration: none;
+
+      background: radial-gradient(
+          circle at 30% 0%,
+          rgba(255, 255, 255, 0.22),
+          rgba(0, 0, 0, 0.95)
+        );
+      border: 1px solid rgba(255, 255, 255, 0.28);
+
+      box-shadow:
+        0 0 8px rgba(255, 43, 191, 0.7),
+        0 0 16px rgba(0, 198, 255, 0.6);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .skill-logo img {
+      width: 65%;
+      height: 65%;
+      object-fit: contain;
+      filter: brightness(1.2);
+    }
+
+    .skill-logo:hover {
+      transform: translateY(-3px) scale(1.05);
+      border-color: rgba(0, 198, 255, 0.95);
+      box-shadow:
+        0 0 10px rgba(255, 43, 191, 1),
+        0 0 22px rgba(0, 198, 255, 0.9);
+      background: radial-gradient(
+          circle at 10% 0%,
+          rgba(255, 255, 255, 0.3),
+          rgba(0, 0, 0, 0.92)
+        );
+    }
+
     /* === CURSOR TRAIL === */
     .shooting-star {
       position: fixed;
@@ -515,53 +572,141 @@
 
     <section class="page-section" id="skills">
       <h2>Skills</h2>
-     
+      <p class="skills-intro">
+        A constellation of tools I use to turn messy data into clear stories and decisions.
+      </p>
 
       <div class="skills-grid">
 
-        <!-- Data & Programming -->
+        <!-- Languages & Core -->
         <div class="skill-constellation">
-          <h3>Data &amp; Programming</h3>
-          <ul class="skill-list">
-            <li>Python</li>
-            <li>R</li>
-            <li>SQL</li>
-            <li>Java</li>
-          </ul>
+          <h3>Languages &amp; Core</h3>
+          <div class="logo-grid">
+            <a
+              href="https://www.python.org/"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/python.svg" alt="Python">
+            </a>
+            <a
+              href="https://www.r-project.org/"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/r.svg" alt="R">
+            </a>
+            <a
+              href="https://www.postgresql.org/"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/sql.svg" alt="SQL">
+            </a>
+            <a
+              href="https://www.oracle.com/java/"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/java.svg" alt="Java">
+            </a>
+          </div>
+        </div>
+
+        <!-- Web & Frontend -->
+        <div class="skill-constellation">
+          <h3>Web &amp; Frontend</h3>
+          <div class="logo-grid">
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/html.svg" alt="HTML">
+            </a>
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/css.svg" alt="CSS">
+            </a>
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/javascript.svg" alt="JavaScript">
+            </a>
+          </div>
         </div>
 
         <!-- Python Data Stack -->
         <div class="skill-constellation">
           <h3>Python Data Stack</h3>
-          <ul class="skill-list">
-            <li>pandas</li>
-            <li>NumPy</li>
-            <li>scikit-learn</li>
-          </ul>
+          <div class="logo-grid">
+            <a
+              href="https://pandas.pydata.org/"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/pandas.svg" alt="pandas">
+            </a>
+            <a
+              href="https://numpy.org/"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/numpy.svg" alt="NumPy">
+            </a>
+            <a
+              href="https://scikit-learn.org/"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/scikit-learn.svg" alt="scikit-learn">
+            </a>
+          </div>
         </div>
 
         <!-- Visualization & Storytelling -->
         <div class="skill-constellation">
           <h3>Visualization &amp; Storytelling</h3>
-          <ul class="skill-list">
-            <li>Tableau</li>
-          </ul>
+          <div class="logo-grid">
+            <a
+              href="https://www.tableau.com/"
+              class="skill-logo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="images/logos/tableau.svg" alt="Tableau">
+            </a>
+          </div>
         </div>
 
-        <!-- Analytics & Modeling (placeholder for future skills) -->
+        <!-- Future Constellations -->
         <div class="skill-constellation">
           <h3>Analytics &amp; Modeling</h3>
-          <ul class="skill-list">
-            <li>More coming soon</li>
-          </ul>
+          <div class="logo-grid">
+            <!-- placeholder; I will add more tools here as I grow -->
+          </div>
         </div>
 
-        <!-- Tools & Workflow (placeholder for future skills) -->
         <div class="skill-constellation">
           <h3>Tools &amp; Workflow</h3>
-          <ul class="skill-list">
-            <li>More coming soon</li>
-          </ul>
+          <div class="logo-grid">
+            <!-- placeholder; I will add more tools here as I grow -->
+          </div>
         </div>
 
       </div>
