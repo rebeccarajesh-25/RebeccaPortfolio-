@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+  <defs>
+    <radialGradient id="glow" cx="30%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="55%" stop-color="#0c0c14" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff2bbf"/>
+      <stop offset="100%" stop-color="#00c6ff"/>
+    </linearGradient>
+    <filter id="outerGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <circle cx="60" cy="60" r="54" fill="url(#glow)" stroke="url(#ring)" stroke-width="3" filter="url(#outerGlow)"/>
+  <text x="60" y="68" text-anchor="middle" font-family="'Segoe UI', system-ui, sans-serif" font-size="26" font-weight="700" letter-spacing="2" fill="#eaf6ff">NPY</text>
+</svg>
