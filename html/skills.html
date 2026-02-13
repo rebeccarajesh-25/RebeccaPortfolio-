@@ -265,6 +265,9 @@
       opacity: 0.9;
       max-width: 36rem;
     }
+    .skills-intro:empty {
+      display: none;
+    }
 
     /* Grid of “constellations” */
     .skills-grid {
@@ -387,8 +390,9 @@
     .logo-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.75rem;
       align-items: center;
+      justify-content: center;
     }
 
     /* full-size neon logo links */
@@ -397,10 +401,18 @@
       align-items: center;
       justify-content: center;
 
-      padding: 0.35rem 0.2rem;
+      min-width: 66px;
+      min-height: 54px;
+      padding: 0.45rem 0.55rem;
       border-radius: 0.7rem;
       text-decoration: none;
       border: 1px solid rgba(255, 255, 255, 0.18);
+      background: radial-gradient(
+        circle at 30% 0%,
+        rgba(255, 255, 255, 0.2),
+        rgba(0, 0, 0, 0.9)
+      );
+      box-shadow: none;
 
       transition:
         transform 0.2s ease,
@@ -417,36 +429,42 @@
       filter:
         grayscale(1)
         brightness(0)
-        invert(36%)
-        sepia(84%)
-        saturate(3800%)
-        hue-rotate(300deg)
-        brightness(95%)
-        contrast(95%)
-        drop-shadow(0 0 4px var(--grid-color));
+        invert(96%)
+        sepia(8%)
+        saturate(320%)
+        hue-rotate(183deg)
+        brightness(101%)
+        contrast(102%);
     }
 
     .skill-logo img.logo-preserve-white {
       filter:
-        hue-rotate(300deg)
-        saturate(3.5)
-        brightness(1.05)
-        contrast(1.05)
-        drop-shadow(0 0 4px var(--grid-color));
+        grayscale(1)
+        brightness(1.1)
+        contrast(1.08);
     }
 
     .skill-logo img.logo-css {
       filter:
-        drop-shadow(0 0 2px rgba(255, 255, 255, 0.8))
-        drop-shadow(0 0 4px var(--grid-color));
+        grayscale(1)
+        brightness(1.08)
+        contrast(1.06);
     }
 
     .skill-logo:hover {
       transform: translateY(-2px) scale(1.03);
       border-color: rgba(0, 198, 255, 0.8);
-      box-shadow:
-        0 0 12px rgba(255, 43, 191, 0.8),
-        0 0 20px rgba(0, 198, 255, 0.75);
+      box-shadow: none;
+      background: radial-gradient(
+        circle at 30% 0%,
+        rgba(255, 255, 255, 0.28),
+        rgba(0, 0, 0, 0.86)
+      );
+    }
+
+    .skill-logo:focus-visible {
+      outline: 2px solid rgba(0, 198, 255, 0.9);
+      outline-offset: 3px;
     }
 
     /* === CURSOR TRAIL === */
