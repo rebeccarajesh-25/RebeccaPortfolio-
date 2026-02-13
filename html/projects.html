@@ -37,8 +37,9 @@
     .scene {
       position: relative;
       width: 100vw;
-      height: 100vh;
+      min-height: 100vh;
       background: #000;
+      padding: 8.5rem 0 4rem;
     }
 
     /* === NAV BAR === */
@@ -234,21 +235,19 @@
 
     /* === PAGE SECTION (Projects) === */
     .page-section {
-      position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
+      margin: 0 auto;
       z-index: 3;
-      width: min(90%, 680px);
+      width: min(97%, 1380px);
       text-align: left;
     }
 
     .page-section h2 {
       font-size: clamp(2rem, 5vw, 3rem);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.4rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      text-align: left;
+      text-align: center;
     }
 
     .page-section p {
@@ -256,6 +255,144 @@
       opacity: 0.9;
       max-width: 36rem;
       line-height: 1.7;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: 1.1rem;
+      border: 1px solid rgba(255, 43, 191, 0.7);
+      background: radial-gradient(
+          circle at 10% 0%,
+          rgba(255, 255, 255, 0.08),
+          transparent 55%
+        ),
+        radial-gradient(
+          circle at 90% 120%,
+          rgba(0, 198, 255, 0.15),
+          transparent 60%
+        ),
+        rgba(0, 0, 0, 0.88);
+      padding: 1.2rem 1.2rem 1.4rem;
+      box-shadow:
+        0 0 12px rgba(255, 43, 191, 0.4),
+        0 0 24px rgba(0, 198, 255, 0.24);
+      overflow: hidden;
+    }
+
+    .project-card h3 {
+      font-size: clamp(1.02rem, 1.7vw, 1.22rem);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      color: #f7f7ff;
+      text-align: center;
+    }
+
+    .project-card p {
+      max-width: none;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      opacity: 0.96;
+      text-align: center;
+    }
+
+    .projects-category {
+      font-size: clamp(1.45rem, 3.2vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0 0 1.35rem;
+      color: #f5f5ff;
+      text-shadow:
+        0 0 10px rgba(255, 43, 191, 0.6),
+        0 0 18px rgba(0, 198, 255, 0.45);
+      position: relative;
+      padding-bottom: 0.7rem;
+    }
+
+    .projects-category::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: min(360px, 70%);
+      height: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 43, 191, 0),
+        rgba(255, 43, 191, 0.95) 40%,
+        rgba(0, 198, 255, 0.95) 60%,
+        rgba(0, 198, 255, 0)
+      );
+      box-shadow:
+        0 0 8px rgba(255, 43, 191, 0.7),
+        0 0 12px rgba(0, 198, 255, 0.6);
+    }
+
+    .project-card + .projects-category {
+      margin-top: 2.1rem;
+    }
+
+    .tableau-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 920px;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(255, 43, 191, 0.75);
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.72);
+      box-shadow:
+        0 0 14px rgba(255, 43, 191, 0.55),
+        0 0 28px rgba(0, 198, 255, 0.35);
+    }
+
+    .tableau-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .tableau-external-link {
+      margin-top: 0.85rem;
+      text-align: center;
+      font-size: 0.98rem;
+    }
+
+    .tableau-external-link a {
+      color: #f5f5ff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 198, 255, 0.75);
+      padding-bottom: 0.1rem;
+      transition:
+        color 0.2s ease,
+        text-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .tableau-external-link a:hover {
+      color: #ffb6e8;
+      border-color: rgba(255, 43, 191, 0.85);
+      text-shadow:
+        0 0 8px rgba(255, 43, 191, 0.55),
+        0 0 14px rgba(0, 198, 255, 0.45);
+    }
+
+    @media (max-width: 860px) {
+      .scene {
+        padding-top: 7.5rem;
+      }
+
+      .project-card {
+        padding: 1rem 0.9rem 1.1rem;
+      }
+
+      .tableau-wrapper {
+        aspect-ratio: 4 / 3;
+        min-height: 700px;
+      }
     }
 
     /* === CURSOR TRAIL (same as other pages) === */
@@ -393,11 +530,33 @@
 
     <section class="page-section" id="projects">
       <h2>Projects</h2>
-      <p>
-        Coming soon: a curated set of data analytics, visualization, and
-        development projects that showcase my skills in Python, R, SQL, and
-        more.
-      </p>
+      <h3 class="projects-category">Business Intelligence Projects</h3>
+      <article class="project-card">
+        <h3>Breast Cancer Survival Dashboard</h3>
+        <p>
+          This Tableau dashboard analyzes how demographic characteristics and medical treatments impact breast cancer survival rates and enables the viewer to identify patterns that may support more informed healthcare decisions.
+        </p>
+
+        <div class="tableau-wrapper">
+          <iframe
+            class="tableau-frame"
+            title="Breast Cancer Dashboard"
+            src="https://public.tableau.com/views/BreastCancerDashboardfinalversion/Dashboard?:language=en-US&:embed=y&:showVizHome=no&:tabs=no&:display_count=n"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <p class="tableau-external-link">
+          <a
+            href="https://public.tableau.com/views/BreastCancerDashboardfinalversion/Dashboard?:language=en-US&:embed=y&:showVizHome=no&:tabs=no&:display_count=n"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open interactive dashboard in a new tab
+          </a>
+        </p>
+      </article>
+      <h3 class="projects-category">Machine Learning Projects</h3>
     </section>
   </div>
 
