@@ -296,6 +296,18 @@
       text-align: center;
     }
 
+    .project-card h3.dashboard-title {
+      text-align: left;
+      margin-bottom: 0.9rem;
+    }
+
+    .dashboard-description {
+      max-width: min(920px, 92%);
+      margin: 1rem auto 0;
+      text-align: justify;
+      text-align-last: center;
+    }
+
     .projects-category {
       font-size: clamp(1.45rem, 3.2vw, 2.1rem);
       font-weight: 800;
@@ -532,10 +544,7 @@
       <h2>Projects</h2>
       <h3 class="projects-category">Business Intelligence Projects</h3>
       <article class="project-card">
-        <h3>Breast Cancer Survival Dashboard</h3>
-        <p>
-          This Tableau dashboard analyzes how demographic characteristics and medical treatments impact breast cancer survival rates and enables the viewer to identify patterns that may support more informed healthcare decisions.
-        </p>
+        <h3 class="dashboard-title">Breast Cancer Survival Dashboard</h3>
 
         <div class="tableau-wrapper">
           <iframe
@@ -546,14 +555,8 @@
             allowfullscreen
           ></iframe>
         </div>
-        <p class="tableau-external-link">
-          <a
-            href="https://public.tableau.com/views/BreastCancerDashboardfinalversion/Dashboard?:language=en-US&:embed=y&:showVizHome=no&:tabs=no&:display_count=n"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open interactive dashboard in a new tab
-          </a>
+        <p class="dashboard-description">
+          This Tableau dashboard analyzes how demographic characteristics and medical treatments impact breast cancer survival rates and enables the viewer to identify patterns that may support more informed healthcare decisions.
         </p>
       </article>
       <h3 class="projects-category">Machine Learning Projects</h3>
